@@ -1,0 +1,122 @@
+# ASP.NET Core
+# Build and test ASP.NET Core projects targeting .NET Core.
+# Add steps that run tests, create a NuGet package, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+# YAML reference:
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema
+# dotNET tasks overview
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/build/dotnet-core-cli?view=azure-devops
+
+name: $(TeamProject)-$(SourceBranchName)-$(BuildID)-$(Date:yyyyMMdd)-$(Rev:.r)  # build numbering format
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - master
+      - releases/*
+      #- '*'  # must quote since "*" is a YAML reserved character; we want a string
+  paths:
+    exclude:
+      - README.md
+      - GitVersion.yml
+      - azure-pipelines.yml
+
+pr: ['*']
+
+variables:
+  DOTNET_SDK_VERSION: '2.2.300'
+  BuildConfiguration: 'Release'
+  RestoreBuildProjects: '**/*.csproj'
+  RestoreBuildProjectsTest: '**/*[Tt]ests/*.csproj'
+  imageName: 'windows-2019'
+
+jobs:
+  - job: build
+    pool:
+      vmImage: $(imageName)
+    steps:
+      - task: DotNetCoreInstaller@0
+        displayName: 'Use .NET Core sdk $(DOTNET_SDK_VERSION)'
+        inputs:
+          version: $(DOTNET_SDK_VERSION)
+          packageType: 'sdk'
+
+      - task: DotNetCoreCLI@2
+        displayName: 'dotnet restore'
+        inputs:
+          command: 'restore'
+          configuration: '$(BuildConfiguration)'
+          projects: $(RestoreBuildProjects)
+
+      - task: DotNetCoreCLI@2
+        displayName: 'dotnet build'
+        inputs:
+          command: 'build'
+          configuration: '$(BuildConfiguration)' # is actually ignored, therefore use manual arguments
+          arguments: '--no-restore -c $(BuildConfiguration)'
+
+      - task: DotNetCoreCLI@2
+        displayName: 'dotnet test'
+        inputs:
+          command: 'test'
+          configuration: '$(BuildConfiguration)'
+          projects: $(RestoreBuildProjectsTest)
+          publishTestResults: true
+          arguments: '--no-build --collect "Code coverage"'
+        condition: and(succeeded(), ne(variables['Build.SourceBranch'], 'refs/heads/master')) # test everything but master, as only working code should be pushed to master
+
+      - task: PublishTestResults@2
+        displayName: Publish test results
+        inputs:        
+          testResultsFormat: VSTest
+          testResultsFiles: '*.trx'
+          searchFolder: $(Agent.TempDirectory)
+          buildPlatform: $(BuildPlatform)
+          buildConfiguration: $(BuildConfiguration)
+        condition: always()
+        continueOnError: true
+        
+      #- task: PublishTestResults@2
+        #displayName: Publish Test Results
+        #inputs:
+          #testResultsFormat: 'xUnit'
+          #testResultsFiles: '*.xml' 
+          #searchFolder: '$(Build.SourcesDirectory)/artifacts/TestResults/$(_BuildConfig)'
+        #continueOnError: true
+        #condition: always()
+            
+      - task: DotNetCoreCLI@2
+        displayName: dotnet pack
+        inputs:
+          command: 'custom'
+          custom: 'pack'
+          arguments: '-c $(BuildConfiguration) -v d -o $(Build.ArtifactStagingDirectory)'
+
+      # Azure preset task doesnt work for unknown reason and throws TF209010, eventho it should done the same as the task above      
+      #- task: DotNetCoreCLI@2
+        #displayName: dotnet pack
+        #inputs:
+          #command: 'pack'
+          #packagesToPack: '$(RestoreBuildProjects)'
+          #configuration: '$(BuildConfiguration)'
+          #arguments: '-o $(Build.ArtifactStagingDirectory)'
+          #includesymbols: true
+          #includesource: true
+          #versioningScheme: 'off'
+          #verbosityPack: 'Diagnostic'
+
+      - task: NuGetCommand@2
+        inputs:
+          command: 'push'
+          packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg
+          nuGetFeedType: 'external'
+          publishFeedCredentials: 'nuget.org'
+        condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publish Artifact'
+        inputs:
+          ArtifactName: 'nupkgs'
+          PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        condition: always()
