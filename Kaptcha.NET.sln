@@ -11,13 +11,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kaptcha.NET", "src\Kaptcha.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C811CABA-7233-48AD-BD4D-639AB50B4E4A}"
 	ProjectSection(SolutionItems) = preProject
-		azure-pipelines.yml = azure-pipelines.yml
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kaptcha.NET.Web", "test\Kaptcha.NET.Web\Kaptcha.NET.Web.csproj", "{AA58431D-5A62-4914-BDB1-80B83510A0E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kaptcha.NET.Tests", "test\Kaptcha.NET.Tests\Kaptcha.NET.Tests.csproj", "{C64B9781-2361-415C-8F3D-BBB6C2235CC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kaptcha.NET.Tests", "test\Kaptcha.NET.Tests\Kaptcha.NET.Tests.csproj", "{C64B9781-2361-415C-8F3D-BBB6C2235CC7}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "example", "example", "{3BE4D893-084F-4E33-9BDC-568F81E80ADF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kaptcha.NET.Web", "example\Kaptcha.NET.Web\Kaptcha.NET.Web.csproj", "{8DE26BE8-5789-4B2E-83DD-96868F4E92BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,22 +30,22 @@ Global
 		{9F8B079A-C11C-4409-83DE-CF275092B8E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F8B079A-C11C-4409-83DE-CF275092B8E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F8B079A-C11C-4409-83DE-CF275092B8E7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AA58431D-5A62-4914-BDB1-80B83510A0E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AA58431D-5A62-4914-BDB1-80B83510A0E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AA58431D-5A62-4914-BDB1-80B83510A0E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AA58431D-5A62-4914-BDB1-80B83510A0E2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C64B9781-2361-415C-8F3D-BBB6C2235CC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C64B9781-2361-415C-8F3D-BBB6C2235CC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C64B9781-2361-415C-8F3D-BBB6C2235CC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C64B9781-2361-415C-8F3D-BBB6C2235CC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DE26BE8-5789-4B2E-83DD-96868F4E92BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DE26BE8-5789-4B2E-83DD-96868F4E92BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DE26BE8-5789-4B2E-83DD-96868F4E92BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DE26BE8-5789-4B2E-83DD-96868F4E92BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{9F8B079A-C11C-4409-83DE-CF275092B8E7} = {8D538C51-1A54-415F-AAEC-7CA0239F79E6}
-		{AA58431D-5A62-4914-BDB1-80B83510A0E2} = {35A2A508-F86D-48F3-A25F-07A5547363F6}
 		{C64B9781-2361-415C-8F3D-BBB6C2235CC7} = {35A2A508-F86D-48F3-A25F-07A5547363F6}
+		{8DE26BE8-5789-4B2E-83DD-96868F4E92BB} = {3BE4D893-084F-4E33-9BDC-568F81E80ADF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8D52A736-D1FC-423E-9A62-F3CDB1C8F259}
