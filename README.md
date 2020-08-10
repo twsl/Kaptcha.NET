@@ -1,5 +1,10 @@
 # Kaptcha.NET
-[![Build Status](https://dev.azure.com/twsl/Kaptcha.NET/_apis/build/status/twsI.Kaptcha.NET?branchName=master)](https://dev.azure.com/twsl/Kaptcha.NET/_build/latest?definitionId=6&branchName=master) ![Nuget](https://img.shields.io/nuget/v/Kaptcha.NET.svg) ![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/Kaptcha.NET.svg)
+
+[![CI](https://github.com/twsl/Kaptcha.NET/workflows/CI/badge.svg)](https://github.com/twsl/Kaptcha.NET/actions?query=workflow%3ACI)
+[![Version](https://img.shields.io/nuget/vpre/Kaptcha.NET.svg)](https://www.nuget.org/packages/Kaptcha.NET/)
+[![Downloads](https://img.shields.io/nuget/dt/Kaptcha.NET.svg)](https://www.nuget.org/packages/Kaptcha.NET/)
+[![license](https://img.shields.io/github/license/twsl/Kaptcha.NET)](LICENSE)
+
 Kaptcha.NET is simple captcha library for .NET Core projects.
 
 
