@@ -1,35 +1,64 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyTitle>Kaptcha.NET</AssemblyTitle>
-    <AssemblyName>Kaptcha.NET</AssemblyName>
-    <PackageId>Kaptcha.NET</PackageId>
-    <RootNamespace>KaptchaNET</RootNamespace>
+    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
     <LangVersion>latest</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <IsPackable>true</IsPackable>
+  </PropertyGroup>
+
+  <!-- Assembly -->
+  <PropertyGroup>
+    <AssemblyTitle>Kaptcha.NET</AssemblyTitle>
+    <AssemblyName>Kaptcha.NET</AssemblyName>
+    <RootNamespace>KaptchaNET</RootNamespace>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <IncludeSymbols>true</IncludeSymbols>
-    <UseFullSemVerForNuGet>true</UseFullSemVerForNuGet>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <RepositoryUrl>https://github.com/twsI/Kaptcha.NET</RepositoryUrl>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Copyright>2019 twsl</Copyright>
-    <Authors>twsl</Authors>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+  </PropertyGroup>
+
+  <!-- Nuget -->
+  <PropertyGroup>
+    <IsPackable>true</IsPackable>
+    <PackageId>Kaptcha.NET</PackageId>
+
     <Description>Kaptcha.NET is simple captcha library for .NET Core projects</Description>
+    <Copyright>Copyright (c) 2019-2020 twsl</Copyright>
+    <Authors>twsl</Authors>
     <PackageTags>captcha;dotnet;netcore</PackageTags>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+    <PackageProjectUrl>https://github.com/twsl/Kaptcha.NET</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/twsl/Kaptcha.NET</RepositoryUrl>
+
+    <UseFullSemVerForNuGet>true</UseFullSemVerForNuGet>
+
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+
+  <!-- Source & Symbols -->
+  <PropertyGroup>
+    <!-- Optional: Publish the repository URL in the built .nupkg (in the NuSpec <Repository> element) -->
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <!-- Optional: Embed source files that are not tracked by the source control manager in the PDB -->
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <!-- Optional: Build symbol package (.snupkg) to distribute the PDB containing Source Link -->
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+  </PropertyGroup>
+  
+  <PropertyGroup>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>Kaptcha.NET.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
+  <!-- Documentation -->
+  <PropertyGroup>
+    <!--<GenerateDocumentationFile>true</GenerateDocumentationFile>-->
+  </PropertyGroup>
+
   <ItemGroup>
-    <PackageReference Include="GitVersionTask" Version="5.0.0-beta4-9">
+    <PackageReference Include="GitVersionTask" Version="5.3.7">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -41,16 +70,22 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
     <PackageReference Include="Microsoft.AspNetCore.Razor" Version="2.2.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="2.9.4-beta1.final" />
-    <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="2.9.4-beta1.final" />
-    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="3.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="3.1.6" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.6" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.6" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.6" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.6" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="3.1.6" />
     <PackageReference Include="System.Collections" Version="4.3.0" />
-    <PackageReference Include="System.Drawing.Common" Version="4.5.1" />
+    <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
   </ItemGroup>
 
 </Project>
