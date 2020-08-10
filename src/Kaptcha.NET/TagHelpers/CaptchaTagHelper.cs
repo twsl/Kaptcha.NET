@@ -48,10 +48,7 @@ namespace KaptchaNET.TagHelpers
         [ViewContext]
         public ViewContext ViewContext { get; set; }
 
-        public CaptchaTagHelper(ICaptchaGeneratorService generator)
-        {
-            _generator = generator;
-        }
+        public CaptchaTagHelper(ICaptchaGeneratorService generator) => _generator = generator;
 
         public override void Init(TagHelperContext context)
         {

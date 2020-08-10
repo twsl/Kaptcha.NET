@@ -7,20 +7,12 @@ namespace KaptchaNET.Exceptions
     {
         public bool InvalidResponse { get; set; } = true;
 
-        public CaptchaValidationException()
-        {
-        }
+        public CaptchaValidationException() { }
 
-        public CaptchaValidationException(string message) : base(message)
-        {
-        }
+        public CaptchaValidationException(string message) : base(message) { }
 
-        public CaptchaValidationException(string message, Exception innerException) : base(message, innerException)
-        {
-        }
+        public CaptchaValidationException(string message, Exception innerException) : base(message, innerException) { }
 
-        protected CaptchaValidationException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
+        protected CaptchaValidationException(SerializationInfo info, StreamingContext context) : base(info, context) { }
     }
 }

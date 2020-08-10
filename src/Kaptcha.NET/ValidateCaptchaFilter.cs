@@ -26,10 +26,7 @@ namespace KaptchaNET
         {
             if (ShouldValidate(context))
             {
-                void invalidResponse()
-                {
-                    context.ModelState.AddModelError(CaptchaTagHelper.CaptchaSolutionFieldName, _service.ValidationMessage);
-                }
+                void invalidResponse() => context.ModelState.AddModelError(CaptchaTagHelper.CaptchaSolutionFieldName, _service.ValidationMessage);
 
                 try
                 {

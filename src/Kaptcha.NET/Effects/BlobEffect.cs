@@ -13,10 +13,7 @@ namespace KaptchaNET.Effects
 
         public EffectType Type => EffectType.Background;
 
-        public BlobEffect(CaptchaOptions captchaOptions)
-        {
-            _captchaOptions = captchaOptions;
-        }
+        public BlobEffect(CaptchaOptions captchaOptions) => _captchaOptions = captchaOptions;
 
         public Bitmap Apply(Bitmap image)
         {

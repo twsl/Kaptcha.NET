@@ -92,19 +92,13 @@ namespace KaptchaNET.TagHelpers
         [HtmlAttributeName(RouteAttributeName)]
         public string Route { get; set; }
 
-        public CaptchaLinkTagHelper(ICaptchaGeneratorService generator, IHtmlGenerator htmlGenerator) : base(generator)
-        {
-            Generator = htmlGenerator;
-        }
+        public CaptchaLinkTagHelper(ICaptchaGeneratorService generator, IHtmlGenerator htmlGenerator) : base(generator) => Generator = htmlGenerator;
         public override void Init(TagHelperContext context)
         {
             //base.Init(context);
         }
 
-        public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
-        {
-            return base.ProcessAsync(context, output);
-        }
+        public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output) => base.ProcessAsync(context, output);
 
         protected override async Task<string> WriteCaptcha()
         {

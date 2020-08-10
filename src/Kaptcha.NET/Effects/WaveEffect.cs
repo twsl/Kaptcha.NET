@@ -19,10 +19,7 @@ namespace KaptchaNET.Effects
         public int Xperiod { get; set; } = 10;
         public int Xamplitude { get; set; } = 8;
 
-        public WaveEffect(CaptchaOptions captchaOptions)
-        {
-            _captchaOptions = captchaOptions;
-        }
+        public WaveEffect(CaptchaOptions captchaOptions) => _captchaOptions = captchaOptions;
 
         public Bitmap Apply(Bitmap image)
         {

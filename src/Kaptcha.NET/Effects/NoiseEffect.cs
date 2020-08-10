@@ -13,10 +13,7 @@ namespace KaptchaNET.Effects
 
         public EffectType Type => EffectType.Foreground;
 
-        public NoiseEffect(CaptchaOptions captchaOptions)
-        {
-            _captchaOptions = captchaOptions;
-        }
+        public NoiseEffect(CaptchaOptions captchaOptions) => _captchaOptions = captchaOptions;
 
         public Bitmap Apply(Bitmap image)
         {

@@ -66,13 +66,11 @@ namespace KaptchaNET.Services.Storage
         private static object ByteArrayToObject(byte[] arrBytes)
         {
             var formatter = new BinaryFormatter();
-            using (var memStream = new MemoryStream())
-            {
-                memStream.Write(arrBytes, 0, arrBytes.Length);
-                memStream.Seek(0, SeekOrigin.Begin);
-                object obj = formatter.Deserialize(memStream);
-                return obj;
-            }
+            using var memStream = new MemoryStream();
+            memStream.Write(arrBytes, 0, arrBytes.Length);
+            memStream.Seek(0, SeekOrigin.Begin);
+            object obj = formatter.Deserialize(memStream);
+            return obj;
         }
     }
 }

@@ -17,10 +17,7 @@ namespace KaptchaNET
 
         public Image Image { get; set; }
 
-        public Captcha()
-        {
-            Created = DateTime.Now;
-        }
+        public Captcha() => Created = DateTime.Now;
 
         protected Captcha(SerializationInfo info, StreamingContext context)
         {

@@ -13,10 +13,7 @@ namespace KaptchaNET.Effects
 
         public EffectType Type => EffectType.Foreground | EffectType.Background;
 
-        public LineEffect(CaptchaOptions captchaOptions)
-        {
-            _captchaOptions = captchaOptions;
-        }
+        public LineEffect(CaptchaOptions captchaOptions) => _captchaOptions = captchaOptions;
 
         public Bitmap Apply(Bitmap image)
         {

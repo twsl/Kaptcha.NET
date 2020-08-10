@@ -10,10 +10,7 @@ namespace KaptchaNET.Services.KeyGenerator
         private static readonly Random _rnd = new Random();
         private readonly CaptchaOptions _captchaOptions;
 
-        public KeyGeneratorService(IOptions<CaptchaOptions> captchaOptions)
-        {
-            _captchaOptions = captchaOptions?.Value;
-        }
+        public KeyGeneratorService(IOptions<CaptchaOptions> captchaOptions) => _captchaOptions = captchaOptions?.Value;
         public string GenerateKey()
         {
             var sb = new StringBuilder();

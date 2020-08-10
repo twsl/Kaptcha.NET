@@ -10,10 +10,7 @@ namespace KaptchaNET.Services.FontGenerator
         private readonly FontOptions _fontOptions;
         private static readonly Random _rnd = new Random();
 
-        public FontGeneratorService(IOptions<FontOptions> fontOptions)
-        {
-            _fontOptions = fontOptions.Value;
-        }
+        public FontGeneratorService(IOptions<FontOptions> fontOptions) => _fontOptions = fontOptions.Value;
 
         public Font GetFont(float scale)
         {
@@ -23,9 +20,6 @@ namespace KaptchaNET.Services.FontGenerator
             return new Font(_fontOptions.FontFamily, size, _fontOptions.FontStyle);
         }
 
-        public float GetSpacing(int width)
-        {
-            return width * _fontOptions.Spacing;
-        }
+        public float GetSpacing(int width) => width * _fontOptions.Spacing;
     }
 }

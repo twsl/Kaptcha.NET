@@ -30,13 +30,11 @@ namespace KaptchaNET.Controllers
         public virtual async Task<IActionResult> GetCaptcha(Guid id)
         {
             Captcha captcha = await _storage.GetCaptchaAsync(id);
-            using (var ms = new MemoryStream())
-            {
-                captcha.Image.Save(ms, _generator.Options.ImageFormat);
-                byte[] b = ms.ToArray();
-                string imageFormatHeader = $"image/{_generator.Options.ImageFormat.ToString().ToLower()}";
-                return File(b, imageFormatHeader);
-            }
+            using var ms = new MemoryStream();
+            captcha.Image.Save(ms, _generator.Options.ImageFormat);
+            byte[] b = ms.ToArray();
+            string imageFormatHeader = $"image/{_generator.Options.ImageFormat.ToString().ToLower()}";
+            return File(b, imageFormatHeader);
         }
 
         public virtual async Task<IActionResult> ValidateCaptcha(Guid id, string solution)
